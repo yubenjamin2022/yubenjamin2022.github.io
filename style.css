@@ -75,6 +75,7 @@ nav{
     flex-direction: column; 
     justify-content: center;
     align-items: center; /* Center align image and buttons */
+    margin-left:50px;
   }
 
   .image {
@@ -195,8 +196,9 @@ nav{
       text-align: center; /* Center align text for smaller screens */
     }
   
-    .left-section h1 {
+    .left-section {
       font-size: clamp(1.5rem, 3vw, 2.5rem); /* Slightly smaller on small screens */
+      margin-left: 0;
     }
 
     .title h1 {
