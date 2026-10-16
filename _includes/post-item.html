@@ -1,0 +1,16 @@
+{%- assign post = include.post -%}
+{%- assign date_format = include.date_format | default: "%b %-d, %Y" -%}
+{%- comment -%} Drafts previewed with --drafts have no date of their own {%- endcomment -%}
+{%- assign post_date = post.date | default: site.time -%}
+<a class="post-item" href="{{ post.url | relative_url }}">
+  <time class="post-item-date" datetime="{{ post_date | date_to_xmlschema }}">{{ post_date | date: date_format }}</time>
+  <span class="post-item-body">
+    <span class="post-item-title">{{ post.title }}</span>
+    {%- if post.description %}
+    <span class="post-item-desc">{{ post.description }}</span>
+    {%- else %}
+    <span class="post-item-desc">{{ post.excerpt | strip_html | normalize_whitespace | truncate: 160 }}</span>
+    {%- endif %}
+  </span>
+  <span class="post-item-read">{% include reading-time.html content=post.content %}</span>
+</a>

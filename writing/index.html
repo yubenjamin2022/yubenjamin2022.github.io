@@ -1,0 +1,26 @@
+---
+layout: default
+title: Writing
+description: Thoughts, notes, and essays by Ben Yu.
+---
+<header class="page-header">
+  <h1 class="page-title">Writing</h1>
+  <p class="page-subtitle">Thoughts, notes, and essays.</p>
+  <a class="chip" href="{{ '/feed.xml' | relative_url }}">{% include icon.html name="rss" %}RSS feed</a>
+</header>
+
+{% if site.posts.size > 0 %}
+  {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | default: site.time | date: '%Y'" %}
+  {% for year in posts_by_year %}
+  <section class="year-group" aria-labelledby="year-{{ year.name }}">
+    <h2 class="year-label" id="year-{{ year.name }}">{{ year.name }}</h2>
+    <ul class="post-list">
+      {% for post in year.items %}
+      <li>{% include post-item.html post=post date_format="%b %-d" %}</li>
+      {% endfor %}
+    </ul>
+  </section>
+  {% endfor %}
+{% else %}
+  <p class="empty-state">Nothing here yet. Check back soon!</p>
+{% endif %}

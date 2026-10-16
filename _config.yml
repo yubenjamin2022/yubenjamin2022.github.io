@@ -1,0 +1,53 @@
+# Site ------------------------------------------------------------------------
+title: Ben Yu
+description: >-
+  Ben Yu is a master's student in Computer Science at UCSD, a SPAR Research Fellow,
+  and a researcher with the UCLA NLP PLUS Lab, studying introspection and AI safety
+  of language models and agents.
+url: "https://yubenjamin2022.github.io"
+baseurl: ""
+lang: en
+timezone: America/Los_Angeles
+
+author:
+  name: Ben Yu
+  url: "https://yubenjamin2022.github.io"
+
+# Used by jekyll-seo-tag for structured data
+social:
+  name: Ben Yu
+  links:
+    - https://github.com/yubenjamin2022
+    - https://scholar.google.com/citations?user=XuCowQMAAAAJ
+
+# Build -----------------------------------------------------------------------
+# GitHub Pages applies jekyll-theme-primer unless the theme is turned off.
+theme: null
+
+markdown: kramdown
+kramdown:
+  # Keep the footnote "return" arrow as text instead of an emoji on iOS
+  footnote_backlink: "&#8617;&#xfe0e;"
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+feed:
+  path: feed.xml
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      permalink: /writing/:title/
+
+exclude:
+  - CNAME
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor

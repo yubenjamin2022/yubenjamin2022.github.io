@@ -1,0 +1,46 @@
+---
+layout: default
+---
+{%- comment -%} Drafts previewed with --drafts have no date of their own {%- endcomment -%}
+{%- assign post_date = page.date | default: site.time -%}
+<article class="post">
+  <header class="post-header">
+    <a class="back-link" href="{{ '/writing/' | relative_url }}">{% include icon.html name="arrow-left" %}All posts</a>
+    <h1 class="post-title">{{ page.title }}</h1>
+    {% if page.description %}<p class="post-dek">{{ page.description }}</p>{% endif %}
+    <p class="post-meta">
+      <time datetime="{{ post_date | date_to_xmlschema }}">{{ post_date | date: "%B %-d, %Y" }}</time>
+      <span aria-hidden="true">·</span>
+      <span>{% include reading-time.html content=content %}</span>
+      {% if page.last_modified_at %}
+      <span class="post-updated"><span aria-hidden="true">·</span> Updated <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">{{ page.last_modified_at | date: "%b %-d, %Y" }}</time></span>
+      {% endif %}
+    </p>
+    {% if page.tags.size > 0 %}
+    <ul class="tags" aria-label="Tags">
+      {% for tag in page.tags %}<li class="tag">{{ tag }}</li>{% endfor %}
+    </ul>
+    {% endif %}
+  </header>
+
+  <div class="prose">
+    {{ content }}
+  </div>
+
+  {% if page.previous or page.next %}
+  <nav class="post-nav" aria-label="More posts">
+    {% if page.previous %}
+    <a class="post-nav-link" href="{{ page.previous.url | relative_url }}" rel="prev">
+      <span class="post-nav-label">{% include icon.html name="arrow-left" %}Older</span>
+      <span class="post-nav-title">{{ page.previous.title }}</span>
+    </a>
+    {% endif %}
+    {% if page.next %}
+    <a class="post-nav-link next" href="{{ page.next.url | relative_url }}" rel="next">
+      <span class="post-nav-label">Newer{% include icon.html name="arrow-right" %}</span>
+      <span class="post-nav-title">{{ page.next.title }}</span>
+    </a>
+    {% endif %}
+  </nav>
+  {% endif %}
+</article>
